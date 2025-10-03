@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e8f4f8;
+    line-height: 1.6;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    border: 3px solid #000;
+}
+
+/* Header - item1 (X) */
+.item1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #e8f4f8;
+    border-bottom: 3px solid #000;
+}
+
+/* ... (стилі item1 без змін) ... */
+
+/* НОВИЙ КОНТЕЙНЕР: Об'єднує всі колонки та футер у горизонтальний Flex */
+.content-area {
+    display: flex;
+    flex: 1; /* Дозволяє розтягнутися на всю доступну висоту контейнера */
+    align-items: stretch; /* Ключ: розтягує `.left-column-wrapper` та `.item4` */
+}
+
+/* НОВА ОБГОРТКА: Групує блоки 2, 3, 5, 6 */
+.left-column-wrapper {
+    display: flex;
+    flex-direction: column; /* Щоб main-content та footer-wrapper були один під одним */
+    flex: 0 0 75%; /* Займає 75% ширини */
+}
+
+/* Main content wrapper - sections 2, 3, 5 */
+.main-content {
+    display: flex;
+    flex: 1; /* Дозволяє розтягнутися, щоб зайняти місце над футером */
+    align-items: stretch;
+}
+
+/* Left column - item2 (section 2) - 25% */
+.item2 {
+    flex: 0 0 33.3333%; /* 25% від загальної ширини 75% = 1/3 */
+    background-color: #fff;
+    border-right: 3px solid #000;
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+/* Middle column - sections 3, 5 - 50% */
+.middle-column {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 66.6666%; /* 50% від загальної ширини 75% = 2/3 */
+}
+
+/* item3 (section 3) */
+.item3 {
+    flex: 1;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-right: 3px solid #000;
+    border-bottom: 3px solid #000;
+}
+
+/* ... (стилі item3 p без змін) ... */
+
+/* item5 (section 5) */
+.item5 {
+    padding: 25px 30px;
+    background-color: #d4e8d4;
+    text-align: center;
+    border-right: 3px solid #000;
+}
+
+/* ... (стилі item5 p без змін) ... */
+
+/* Right column - item4 (section 4) - 25% */
+.item4 {
+    flex: 1; /* Ключ: займає 25% ширини, розтягується по висоті `.content-area` */
+    padding: 20px 30px;
+    background-color: #f5e6d3;
+}
+
+.item4 p {
+    font-size: 14px;
+    text-align: justify;
+    color: #000;
+}
+
+/* Footer wrapper - Тепер займає 100% ширини `.left-column-wrapper` */
+.footer-wrapper {
+    display: flex;
+    width: 100%;
+    border-top: 3px solid #000;
+    border-right: 3px solid #000; /* Зберігаємо тут праву рамку */
+}
+
+/* Footer - item6 (Y) */
+.item6 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #e8f4f8;
+    flex: 1; /* Займає всю доступну ширину (100% від 75% загальної) */
+}
+
+/* ... (інші стилі item6 без змін) ... */
+
+/* Responsive */
+@media (max-width: 1024px) {
+    /* Змінюємо напрямок `.content-area` на вертикальний */
+    .content-area {
+        flex-direction: column;
+    }
+    
+    .left-column-wrapper {
+        flex: 1 1 auto;
+    }
+    
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .item2,
+    .middle-column,
+    .item4 {
+        flex: 1 1 auto;
+        border-right: none;
+        border-bottom: 3px solid #000;
+    }
+
+    .item2 {
+        flex: 1 1 100%; /* Займає 100% ширини */
+    }
+
+    .middle-column {
+        flex: 1 1 100%; /* Займає 100% ширини */
+    }
+    
+    .item4 {
+        border-bottom: none;
+    }
+    
+    .footer-wrapper {
+        width: 100%;
+        border-right: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .item1,
+    .item6 {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
